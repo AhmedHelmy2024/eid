@@ -1,53 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Greeting Card Creator</title>
-<style>
-    body {
-        font-family: Arial, sans-serif;
-        text-align: center;
-    }
-    input[type="text"] {
-        padding: 8px;
-        margin: 10px;
-    }
-    button {
-        padding: 10px 20px;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        cursor: pointer;
-    }
-    button:hover {
-        background-color: #45a049;
-    }
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Background Story Page</title>
+    <style>
+        body, html {
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        .background-story {
+            background-image: url('your-image.jpg'); /* تغيير 'your-image.jpg' إلى اسم الصورة الخاصة بك */
+            background-size: cover;
+            background-position: center;
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
 </head>
 <body>
-
-<h2>Greeting Card Creator</h2>
-
-<label for="name">Enter the name:</label>
-<input type="text" id="name" placeholder="Enter name"><br>
-
-<button onclick="saveCard()">Save Card</button>
-
-<script src="FileSaver.js"></script>
-<script>
-function saveCard() {
-    var name = document.getElementById("name").value;
-    if (name) {
-        var cardContent = `Dear ${name},\n\nHappy Birthday!\n\nBest wishes,\n[Your Name]`;
-        var blob = new Blob([cardContent], { type: "text/plain;charset=utf-8" });
-        saveAs(blob, `${name}_card.txt`);
-        alert("Card saved successfully!");
-    } else {
-        alert("Please enter a name.");
-    }
-}
-</script>
-
+    <div class="background-story">
+        <!-- Content Goes Here -->
+    </div>
 </body>
 </html>
