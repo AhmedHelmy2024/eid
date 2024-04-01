@@ -43,6 +43,7 @@
   .btn-group {
     display: flex;
     justify-content: center; /* محاذاة الأزرار بالوسط أفقيًا */
+    margin-top: 20px;
   }
   .btn-group button {
     background-color: #00b1e1;
@@ -70,45 +71,17 @@
 </head>
 <body>
   <h2>تحرير الصورة</h2>
-  <select id="imageSelect">
-    <option value="template/EID1.png">صورة 1</option> <!-- مسار الصورة الأولى -->
-    <option value="template/EID2.png">صورة 2</option> <!-- مسار الصورة الثانية -->
-    <!-- يمكنك إضافة خيارات أخرى هنا -->
-  </select>
-  <br><br>
   <input type="text" id="nameInput" placeholder="اكتب الاسم بالعربية">
-  <button onclick="previewImage()">معاينة الصورة</button>
-  <br><br>
   <div id="preview">
     <img id="previewImage" src="" alt="">
     <span id="previewName"></span>
   </div>
-  <br><br>
   <div class="btn-group">
     <button onclick="downloadImage()">تحميل الصورة النهائية</button>
   </div>
   <div class="copyright">حقوق الملكية &copy; أحمد حلمي</div>
 
   <script>
-    function previewImage() {
-      var selectedImage = document.getElementById("imageSelect").value;
-      var name = document.getElementById("nameInput").value;
-      var previewImg = document.getElementById("previewImage");
-      var previewName = document.getElementById("previewName");
-
-      previewImg.src = selectedImage;
-      previewImg.alt = "الصورة المعاينة";
-      previewName.textContent = name;
-      previewName.style.bottom = "calc(50% + 2cm)"; /* تحريك النص إلى الأعلى بمقدار 2 سم */
-      previewName.style.left = "50%";
-      previewName.style.transform = "translate(-50%, 0%)"; /* تحديد الوضع الأفقي في الوسط */
-      previewName.style.fontSize = "36px";
-      previewName.style.color = "#00b1e1";
-      previewName.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
-      previewName.style.padding = "10px 20px";
-      previewName.style.borderRadius = "10px";
-    }
-
     function downloadImage() {
       var previewDiv = document.getElementById("preview");
       var image = previewDiv.querySelector("img");
