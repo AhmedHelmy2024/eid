@@ -27,6 +27,7 @@
   #preview span {
     position: absolute;
     font-size: 36px;
+    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', sans-serif; /* استخدام الخط */
     color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
@@ -92,11 +93,15 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
+        // تحديد موضع النص على الصورة
+        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
+        var textY = canvas.height / 2 + 670; // الموضع العمودي (بعد الحفظ)
+
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'GE SS Two Medium', sans-serif";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', sans-serif";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
-        ctx.fillText(name, canvas.width / 2, 670);
+        ctx.fillText(name, textX, textY);
 
         // تحويل الصورة والنص إلى بيانات URL
         var dataURL = canvas.toDataURL("image/png");
@@ -125,11 +130,15 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
+        // تحديد موضع النص على الصورة
+        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
+        var textY = canvas.height / 2 + 670; // الموضع العمودي (بعد الحفظ)
+
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'GE SS Two Medium', sans-serif";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', sans-serif";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
-        ctx.fillText(name, canvas.width / 2, 670);
+        ctx.fillText(name, textX, textY);
 
         // تحويل الصورة والنص إلى بيانات URL
         var dataURL = canvas.toDataURL("image/png");
