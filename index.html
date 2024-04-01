@@ -30,13 +30,13 @@
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 36px;
-    color: #00b1e1; /* تغيير لون النص إلى #00b1e1 */
+    color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
   }
   button {
-    background-color: #00b1e1; /* تغيير لون خلفية الزر إلى #00b1e1 */
+    background-color: #00b1e1;
     color: white;
     border: none;
     padding: 10px 20px;
@@ -44,7 +44,7 @@
     border-radius: 5px;
   }
   button:hover {
-    background-color: #0089b7; /* تغيير درجة اللون لتأثير التحويم */
+    background-color: #0089b7;
   }
   input[type="text"] {
     padding: 10px;
@@ -91,19 +91,9 @@
       var image = previewDiv.querySelector("img");
       var name = previewDiv.querySelector("span").textContent;
 
-      var canvas = document.createElement("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
-      var ctx = canvas.getContext("2d");
-      ctx.drawImage(image, 0, 0);
-      ctx.font = "40px Arial";
-      ctx.fillStyle = "#00b1e1"; /* تغيير لون النص إلى #00b1e1 */
-      ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, 50);
-
       var downloadLink = document.createElement("a");
       downloadLink.download = "edited_image.png";
-      downloadLink.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+      downloadLink.href = image.src; // استخدام مصدر الصورة الأصلي
       downloadLink.click();
     }
   </script>
