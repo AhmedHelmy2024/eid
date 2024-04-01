@@ -56,12 +56,13 @@
     cursor: pointer;
     border-radius: 5px;
     margin: 0 5px; /* هامش من اليمين واليسار */
+    transition: background-color 0.3s ease; /* تحويل اللون بشكل ناعم */
   }
   button:hover {
     background-color: #0089b7;
   }
   button:active {
-    background-color: #001a33; /* لون الكحلي الغامق عند الضغط */
+    background-color: #00a33e; /* تغيير لون الزر عند الضغط */
   }
   input[type="text"] {
     padding: 10px;
@@ -85,8 +86,8 @@
       <!-- يمكنك إضافة خيارات أخرى هنا -->
     </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
-    <button id="downloadButton" onclick="downloadImage()">حمل بطاقتك</button>
-    <button onclick="previewImage()">تأكيد الاسم</button>
+    <button id="downloadButton" onclick="downloadImage()" disabled>حمل بطاقتك</button>
+    <button onclick="previewImage()" id="confirmButton">تأكيد الاسم</button>
   </div>
   <br><br>
   <div id="preview"></div>
@@ -126,6 +127,8 @@
         // عرض الصورة في المعاينة
         previewDiv.innerHTML = '';
         previewDiv.appendChild(img);
+        document.getElementById("downloadButton").disabled = false; // تفعيل زر تحميل البطاقة
+        document.getElementById("confirmButton").style.backgroundColor = "#00a33e"; // تغيير لون زر تأكيد الاسم بعد الضغط
       };
       img.src = selectedImage;
     }
@@ -167,7 +170,6 @@
         downloadLink.click();
       };
       img.src = selectedImage;
-      document.getElementById("downloadButton").style.backgroundColor = "#001a33"; // تغيير لون الزر بعد الضغط
     }
   </script>
 </body>
