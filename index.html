@@ -31,7 +31,7 @@
   }
   #preview span {
     position: absolute;
-    bottom: calc(50% + 10cm); /* تحديد المسافة بالنسبة للأعلى بمقدار 2 سم */
+    bottom: calc(50% + 2cm); /* تحديد المسافة بالنسبة للأعلى بمقدار 2 سم */
     left: 50%;
     transform: translate(-50%, 0%); /* تحديد الوضع الأفقي في الوسط */
     font-size: 36px;
@@ -40,21 +40,31 @@
     padding: 10px 20px;
     border-radius: 10px;
   }
-  button {
+  .btn-group {
+    display: flex;
+    justify-content: center; /* محاذاة الأزرار بالوسط أفقيًا */
+  }
+  .btn-group button {
     background-color: #00b1e1;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    margin: 0 10px; /* تباعد بين الأزرار */
   }
-  button:hover {
+  .btn-group button:hover {
     background-color: #0089b7;
   }
   input[type="text"] {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+  }
+  .copyright {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
   }
 </style>
 </head>
@@ -74,7 +84,10 @@
     <span id="previewName"></span>
   </div>
   <br><br>
-  <button onclick="downloadImage()">تحميل الصورة النهائية</button>
+  <div class="btn-group">
+    <button onclick="downloadImage()">تحميل الصورة النهائية</button>
+  </div>
+  <div class="copyright">حقوق الملكية &copy; أحمد حلمي</div>
 
   <script>
     function previewImage() {
@@ -86,7 +99,7 @@
       previewImg.src = selectedImage;
       previewImg.alt = "الصورة المعاينة";
       previewName.textContent = name;
-      previewName.style.bottom = "calc(50% + 2cm)"; /* تحريك النص إلى الأعلى بمقدار 10 سم */
+      previewName.style.bottom = "calc(50% + 2cm)"; /* تحريك النص إلى الأعلى بمقدار 2 سم */
       previewName.style.left = "50%";
       previewName.style.transform = "translate(-50%, 0%)"; /* تحديد الوضع الأفقي في الوسط */
       previewName.style.fontSize = "36px";
