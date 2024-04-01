@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,43 +15,39 @@
     text-align: center;
   }
   #preview {
+    position: relative;
     text-align: center;
   }
   #preview img {
     max-width: 100%;
     height: auto;
-    display: block;
-    margin: 0 auto;
   }
   #preview span {
     position: absolute;
-    top: 10px;
-    right: 10px;
-    font-size: 24px;
-    color: #00b1e1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 36px;
+    color: #00b1e1; /* Changing the text color to #00b1e1 */
     background-color: rgba(255, 255, 255, 0.7);
-    padding: 5px 10px;
-    border-radius: 5px;
+    padding: 10px 20px;
+    border-radius: 10px;
   }
   button {
-    background-color: #00b1e1;
+    background-color: #00b1e1; /* Changing button background color to #00b1e1 */
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    display: block;
-    margin: 20px auto;
   }
   button:hover {
-    background-color: #0089b7;
+    background-color: #0089b7; /* Darker shade for hover effect */
   }
   input[type="text"] {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    display: block;
-    margin: 0 auto;
   }
 </style>
 </head>
@@ -60,7 +56,7 @@
   <select id="imageSelect">
     <option value="template/template1.jpg">صورة 1</option>
     <option value="path/to/image2.jpg">صورة 2</option>
-    <!-- يمكنك إضافة المزيد من الخيارات هنا -->
+    <!-- You can add more options here -->
   </select>
   <br><br>
   <input type="text" id="nameInput" placeholder="أدخل الاسم">
@@ -91,17 +87,17 @@
     function downloadImage() {
       var previewDiv = document.getElementById("preview");
       var image = previewDiv.querySelector("img");
-      var name = document.getElementById("nameInput").value;
+      var name = previewDiv.querySelector("span").textContent;
 
       var canvas = document.createElement("canvas");
-      canvas.width = image.naturalWidth;
-      canvas.height = image.naturalHeight;
+      canvas.width = image.width;
+      canvas.height = image.height;
       var ctx = canvas.getContext("2d");
       ctx.drawImage(image, 0, 0);
-      ctx.font = "24px Arial";
-      ctx.fillStyle = "#00b1e1";
-      ctx.textAlign = "right";
-      ctx.fillText(name, canvas.width - 10, 30);
+      ctx.font = "40px Arial";
+      ctx.fillStyle = "#00b1e1"; /* Changing text color to #00b1e1 */
+      ctx.textAlign = "center";
+      ctx.fillText(name, canvas.width / 2, 50);
 
       var downloadLink = document.createElement("a");
       downloadLink.download = "edited_image.png";
