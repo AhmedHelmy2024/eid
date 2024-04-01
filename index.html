@@ -20,7 +20,7 @@
     color: #00b1e1;
   }
   #preview {
-    position: relative;
+    margin: 0 auto;
     text-align: center;
   }
   #preview img {
@@ -29,11 +29,14 @@
   }
   #preview span {
     position: absolute;
-    font-size: 40px;
+    font-size: 36px;
     color: #00b1e1;
-    top: 50%;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    top: 672px;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translateX(-50%);
   }
   .button-container {
     display: flex;
@@ -61,7 +64,6 @@
     border: 1px solid #ddd;
     flex: 1;
     max-width: 200px;
-    text-align: center; /* توسيط النص أفقياً */
   }
 </style>
 </head>
@@ -100,7 +102,7 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = canvas.height / 2; // الموضع العمودي (بالوسط)
+        var textY = 672; // المسافة من الأعلى بالبكسل
 
         // إضافة النص إلى الصورة
         ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
@@ -134,7 +136,7 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = canvas.height / 2; // الموضع العمودي (بالوسط)
+        var textY = 672; // المسافة من الأعلى بالبكسل
 
         // إضافة النص إلى الصورة
         ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
