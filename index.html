@@ -31,7 +31,7 @@
   }
   #preview span {
     position: absolute;
-    bottom: 10px; /* تعديل المسافة بين النص والأسفل */
+    bottom: 20px; /* تعديل المسافة بين النص والأسفل */
     left: 50%;
     transform: translate(-50%, 0%); /* تحديد الوضع الأفقي في الوسط */
     font-size: 36px;
@@ -69,7 +69,10 @@
   <input type="text" id="nameInput" placeholder="اكتب الاسم بالعربية">
   <button onclick="previewImage()">معاينة الصورة</button>
   <br><br>
-  <div id="preview"></div>
+  <div id="preview">
+    <img id="previewImage" src="" alt="">
+    <span id="previewName"></span>
+  </div>
   <br><br>
   <button onclick="downloadImage()">تحميل الصورة النهائية</button>
 
@@ -77,18 +80,20 @@
     function previewImage() {
       var selectedImage = document.getElementById("imageSelect").value;
       var name = document.getElementById("nameInput").value;
-      var previewDiv = document.getElementById("preview");
+      var previewImg = document.getElementById("previewImage");
+      var previewName = document.getElementById("previewName");
 
-      var img = document.createElement("img");
-      img.src = selectedImage;
-      img.alt = "الصورة المعاينة";
-
-      var nameSpan = document.createElement("span");
-      nameSpan.textContent = name;
-
-      previewDiv.innerHTML = "";
-      previewDiv.appendChild(img);
-      previewDiv.appendChild(nameSpan);
+      previewImg.src = selectedImage;
+      previewImg.alt = "الصورة المعاينة";
+      previewName.textContent = name;
+      previewName.style.bottom = "20px"; /* تعديل المسافة بين النص والأسفل */
+      previewName.style.left = "50%";
+      previewName.style.transform = "translate(-50%, 0%)"; /* تحديد الوضع الأفقي في الوسط */
+      previewName.style.fontSize = "36px";
+      previewName.style.color = "#00b1e1";
+      previewName.style.backgroundColor = "rgba(255, 255, 255, 0.7)";
+      previewName.style.padding = "10px 20px";
+      previewName.style.borderRadius = "10px";
     }
 
     function downloadImage() {
@@ -111,7 +116,7 @@
       ctx.font = "40px 'GE SS Two'"; /* تحديد نوع الخط */
       ctx.fillStyle = "#00b1e1";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, canvas.height - 30); /* تعديل مكان النص */
+      ctx.fillText(name, canvas.width / 2, canvas.height - 50); /* تعديل مكان النص */
 
       // تحويل الصورة والنص إلى بيانات URL
       var dataURL = canvas.toDataURL("image/png");
