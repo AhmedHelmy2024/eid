@@ -36,6 +36,9 @@
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
+    top: 672px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .button-container {
     text-align: right; /* محاذاة الحقول من يمين الشاشة */
@@ -105,12 +108,9 @@
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
-        // تحويل الصورة والنص إلى بيانات URL
-        var dataURL = canvas.toDataURL("image/png");
-
-        // عرض الصورة في المعاينة
+        // إضافة الصورة إلى المعاينة
         previewDiv.innerHTML = '';
-        previewDiv.appendChild(img);
+        previewDiv.appendChild(canvas);
       };
       img.src = selectedImage;
     }
