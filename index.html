@@ -29,7 +29,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        input {
+        input[type="text"] {
             margin-top: 10px;
             width: 80%;
             padding: 10px;
@@ -83,12 +83,13 @@
 <body>
     <h2>MERGING - PV LOGO </h2>
 
-    <input type="file" id="image1Input" accept="image/*" title="رفع الصورة المراد إضافة الشعار لها">
+    <!-- حقل النص لكتابة الاسم -->
+    <input type="text" id="nameInput" placeholder="اكتب الاسم الذي ترغب في إضافته على الصورة">
     
     <!-- صورة المدموجة -->
     <canvas id="canvas"></canvas>
 
-    <!-- قائمة منسدلة لاختيار الصورة الثانية -->
+    <!-- قائمة منسدلة لاختيار القالب -->
     <select id="templateList" title="اختر القالب">
         <option value="" disabled selected>اختر القالب</option>
     </select>
@@ -103,6 +104,7 @@
     <script>
         let image1;
         let image2;
+        let nameText = "";
         const templateList = document.getElementById('templateList');
 
         // تحميل قائمة القوالب من ملف list.json
@@ -118,46 +120,40 @@
             });
 
         function mergeImages() {
-            const image1Input = document.getElementById('image1Input');
+            const nameInput = document.getElementById('nameInput');
+            nameText = nameInput.value;
+
             const selectedTemplate = templateList.value;
             const canvas = document.getElementById('canvas');
             const ctx = canvas.getContext('2d');
 
-            if (!image1Input.files[0] || !selectedTemplate) {
-                console.error('الرجاء تحديد كل الصور.');
+            if (!nameText || !selectedTemplate) {
+                console.error('الرجاء تحديد كل الصور وإدخال الاسم.');
                 return;
             }
 
-            const reader1 = new FileReader();
             const reader2 = new FileReader();
 
-            reader1.onload = function (e) {
-                image1 = new Image();
-                image1.src = e.target.result;
+            reader2.onload = function () {
+                image2 = new Image();
+                image2.src = selectedTemplate;
 
-                image1.onload = function () {
-                    canvas.width = image1.width;
-                    canvas.height = image1.height;
-                    ctx.drawImage(image1, 0, 0);
+                image2.onload = function () {
+                    canvas.width = image2.width;
+                    canvas.height = image2.height;
+                    ctx.drawImage(image2, 0, 0);
 
-                    reader2.onload = function () {
-                        image2 = new Image();
-                        image2.src = selectedTemplate;
+                    // رسم النص على الصورة
+                    ctx.font = "30px Arial";
+                    ctx.fillStyle = "white";
+                    ctx.textAlign = "center";
+                    ctx.fillText(nameText, canvas.width / 2, canvas.height - 30);
 
-                        image2.onload = function () {
-                            // تأخير تنفيذ الدمج بضعة لحظات للتأكد من تحميل الصورة الثانية
-                            setTimeout(() => {
-                                ctx.drawImage(image2, 0, 0, image1.width, image1.height);
-                                saveMergedImage();
-                            }, 100);
-                        };
-                    };
-
-                    reader2.readAsDataURL(image1Input.files[0]);
+                    saveMergedImage();
                 };
             };
 
-            reader1.readAsDataURL(image1Input.files[0]);
+            reader2.readAsDataURL(image1Input.files[0]);
         }
 
         function saveMergedImage() {
