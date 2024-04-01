@@ -5,13 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تحرير الصورة</title>
 <style>
-  @font-face {
-    font-family: 'GE SS Two Medium';
-    src: url('fonts/ArbFONTS-GE_SS_TWO_MEDIUM.otf') format('opentype');
-  }
-  
   body {
-    font-family: 'GE SS Two Medium', Arial, sans-serif;
+    font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
   }
@@ -36,6 +31,9 @@
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 670px; /* يمكنك تعديل القيمة هنا للتحكم في موضع النص عموديًا */
   }
   .button-container {
     text-align: right; /* محاذاة الحقول من يمين الشاشة */
@@ -94,15 +92,11 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 670; // الموضع العمودي (بعد 670 بكسل من الأعلى)
-
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'GE SS Two Medium', Arial, sans-serif";
+        ctx.font = "40px 'GE SS Two Medium', sans-serif";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
-        ctx.fillText(name, textX, textY);
+        ctx.fillText(name, canvas.width / 2, 670);
 
         // تحويل الصورة والنص إلى بيانات URL
         var dataURL = canvas.toDataURL("image/png");
@@ -131,15 +125,11 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 670; // الموضع العمودي (بعد 670 بكسل من الأعلى)
-
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'GE SS Two Medium', Arial, sans-serif";
+        ctx.font = "40px 'GE SS Two Medium', sans-serif";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
-        ctx.fillText(name, textX, textY);
+        ctx.fillText(name, canvas.width / 2, 670);
 
         // تحويل الصورة والنص إلى بيانات URL
         var dataURL = canvas.toDataURL("image/png");
