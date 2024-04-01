@@ -64,7 +64,6 @@
       <option value="template/EID2.png">لون 2 </option>
       <!-- يمكنك إضافة خيارات أخرى هنا -->
     </select>
-    <button onclick="previewImage()">معاينة</button>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
     <button onclick="downloadImage()">حمل بطاقتك</button>
   </div>
@@ -72,57 +71,43 @@
   <div id="preview"></div>
   
   <script>
-    function previewImage() {
+    function downloadImage() {
       var selectedImage = document.getElementById("imageSelect").value;
       var name = document.getElementById("nameInput").value;
       var previewDiv = document.getElementById("preview");
 
-      var img = document.createElement("img");
+      var img = new Image();
+      img.onload = function() {
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        // تعيين عرض وارتفاع الـ Canvas
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+
+        // رسم الصورة على الـ Canvas
+        ctx.drawImage(img, 0, 0);
+
+        // تحديد موضع النص على الصورة
+        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
+        var textY = canvas.height - 20; // الموضع العمودي (في الربع الأخير من الأسفل)
+
+        // إضافة النص إلى الصورة
+        ctx.font = "40px Arial";
+        ctx.fillStyle = "#00b1e1";
+        ctx.textAlign = "center";
+        ctx.fillText(name, textX, textY);
+
+        // تحويل الصورة والنص إلى بيانات URL
+        var dataURL = canvas.toDataURL("image/png");
+
+        // إنشاء رابط التنزيل
+        var downloadLink = document.createElement("a");
+        downloadLink.download = "edited_image.png";
+        downloadLink.href = dataURL;
+        downloadLink.click();
+      };
       img.src = selectedImage;
-      img.alt = "الصورة المعاينة";
-
-      var nameSpan = document.createElement("span");
-      nameSpan.textContent = name;
-
-      previewDiv.innerHTML = "";
-      previewDiv.appendChild(img);
-      previewDiv.appendChild(nameSpan);
-    }
-
-    function downloadImage() {
-      var previewDiv = document.getElementById("preview");
-      var image = previewDiv.querySelector("img");
-      var name = previewDiv.querySelector("span").textContent;
-
-      // إنشاء الـ Canvas
-      var canvas = document.createElement("canvas");
-      var ctx = canvas.getContext("2d");
-
-      // تعيين عرض وارتفاع الـ Canvas
-      canvas.width = image.naturalWidth;
-      canvas.height = image.naturalHeight;
-
-      // رسم الصورة على الـ Canvas
-      ctx.drawImage(image, 0, 0);
-
-      // تحديد موضع النص على الصورة
-      var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-      var textY = canvas.height - 20; // الموضع العمودي (في الربع الأخير من الأسفل)
-
-      // إضافة النص إلى الصورة
-      ctx.font = "40px Arial";
-      ctx.fillStyle = "#00b1e1";
-      ctx.textAlign = "center";
-      ctx.fillText(name, textX, textY);
-
-      // تحويل الصورة والنص إلى بيانات URL
-      var dataURL = canvas.toDataURL("image/png");
-
-      // إنشاء رابط التنزيل
-      var downloadLink = document.createElement("a");
-      downloadLink.download = "edited_image.png";
-      downloadLink.href = dataURL;
-      downloadLink.click();
     }
   </script>
 </body>
