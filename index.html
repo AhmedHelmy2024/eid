@@ -15,23 +15,23 @@
     text-align: center;
   }
   #preview {
-    position: relative;
     text-align: center;
   }
   #preview img {
     max-width: 100%;
     height: auto;
+    display: block;
+    margin: 0 auto;
   }
   #preview span {
     position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 36px;
+    top: 10px;
+    right: 10px;
+    font-size: 24px;
     color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
-    border-radius: 10px;
+    padding: 5px 10px;
+    border-radius: 5px;
   }
   button {
     background-color: #00b1e1;
@@ -40,6 +40,8 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    display: block;
+    margin: 20px auto;
   }
   button:hover {
     background-color: #0089b7;
@@ -48,6 +50,8 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
+    display: block;
+    margin: 0 auto;
   }
 </style>
 </head>
@@ -87,18 +91,17 @@
     function downloadImage() {
       var previewDiv = document.getElementById("preview");
       var image = previewDiv.querySelector("img");
-      var name = previewDiv.querySelector("span").textContent;
+      var name = document.getElementById("nameInput").value;
 
       var canvas = document.createElement("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
       var ctx = canvas.getContext("2d");
       ctx.drawImage(image, 0, 0);
-      ctx.font = "40px Arial";
+      ctx.font = "24px Arial";
       ctx.fillStyle = "#00b1e1";
-      ctx.textAlign = "center";
-      // تعديل موقع النص هنا:
-      ctx.fillText(name, canvas.width / 2, canvas.height / 2);
+      ctx.textAlign = "right";
+      ctx.fillText(name, canvas.width - 10, 30);
 
       var downloadLink = document.createElement("a");
       downloadLink.download = "edited_image.png";
