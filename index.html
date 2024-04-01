@@ -54,15 +54,6 @@
     border: 1px solid #ddd;
     margin-left: 10px; /* إضافة هامش للتباعد بين حقل النص والأزرار */
   }
-
-  @font-face {
-    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM';
-    src: url('fonts/ArbFONTS-GE_SS_TWO_MEDIUM.otf') format('opentype');
-  }
-
-  #preview span {
-    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif;
-  }
 </style>
 </head>
 <body>
@@ -100,10 +91,10 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = canvas.height / 2 ; // الموضع العمودي (في النصف الأعلى)
+        var textY = canvas.height - 20; // الموضع العمودي (في الربع الأخير من الأسفل)
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif";
+        ctx.font = "40px Arial";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
@@ -137,10 +128,10 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = canvas.height / 2 ; // الموضع العمودي (في النصف الأعلى)
+        var textY = canvas.height - 20; // الموضع العمودي (في الربع الأخير من الأسفل)
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif";
+        ctx.font = "40px Arial";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
