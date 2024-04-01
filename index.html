@@ -3,39 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>بطاقة معايدة</title>
+    <title>Instagram Story</title>
     <style>
-        canvas {
-            border: 1px solid black;
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .story-container {
+            max-width: 90%;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .story-image {
+            width: 100%;
+            height: auto;
+            display: block;
         }
     </style>
 </head>
 <body>
-    <div>
-        <!-- إضافة العنصر canvas -->
-        <canvas id="myCanvas" width="400" height="200"></canvas>
+    <div class="story-container">
+        <img class="story-image" src="path/to/your/image.jpg" alt="Instagram Story">
     </div>
-
-    <!-- يمكنك إضافة أي عناصر إضافية هنا -->
-
-    <!-- إذا كنت بحاجة إلى أي وظائف إضافية، يمكنك استخدام JavaScript هنا -->
-
-    <script>
-        // احصل على عنصر الـ canvas
-        var canvas = document.getElementById("myCanvas");
-        var ctx = canvas.getContext("2d");
-
-        // إضافة الصورة إلى الـ canvas
-        var img = new Image();
-        img.src = "template/template1jpg"; // استبدل بمسار الصورة الخاصة بك
-        img.onload = function() {
-            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-        }
-
-        // إضافة النص إلى الـ canvas
-        ctx.font = "20px Arial"; // حجم الخط والنوع
-        ctx.fillStyle = "black"; // لون النص
-        ctx.fillText("اكتب النص هنا", 50, 100); // النص وموقعه على الـ canvas
-    </script>
 </body>
 </html>
