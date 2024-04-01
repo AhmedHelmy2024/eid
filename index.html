@@ -27,14 +27,10 @@
   #preview span {
     position: absolute;
     font-size: 36px;
-    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', sans-serif; /* استخدام الخط */
     color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 670px; /* يمكنك تعديل القيمة هنا للتحكم في موضع النص عموديًا */
   }
   .button-container {
     text-align: right; /* محاذاة الحقول من يمين الشاشة */
@@ -57,6 +53,15 @@
     border-radius: 5px;
     border: 1px solid #ddd;
     margin-left: 10px; /* إضافة هامش للتباعد بين حقل النص والأزرار */
+  }
+
+  @font-face {
+    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM';
+    src: url('/path/to/your/fonts/ArbFONTS-GE_SS_TWO_MEDIUM.otf') format('opentype');
+  }
+
+  #preview span {
+    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif;
   }
 </style>
 </head>
@@ -95,10 +100,10 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = canvas.height / 2 + 670; // الموضع العمودي (بعد الحفظ)
+        var textY = canvas.height / 2 ; // الموضع العمودي (في النصف الأعلى)
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', sans-serif";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
@@ -132,10 +137,10 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = canvas.height / 2 + 670; // الموضع العمودي (بعد الحفظ)
+        var textY = canvas.height / 2 ; // الموضع العمودي (في النصف الأعلى)
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', sans-serif";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
