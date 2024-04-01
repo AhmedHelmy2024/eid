@@ -91,9 +91,30 @@
       var image = previewDiv.querySelector("img");
       var name = previewDiv.querySelector("span").textContent;
 
+      // إنشاء الـ Canvas
+      var canvas = document.createElement("canvas");
+      var ctx = canvas.getContext("2d");
+
+      // تعيين عرض وارتفاع الـ Canvas
+      canvas.width = image.naturalWidth;
+      canvas.height = image.naturalHeight;
+
+      // رسم الصورة على الـ Canvas
+      ctx.drawImage(image, 0, 0);
+
+      // إضافة النص إلى الصورة
+      ctx.font = "40px Arial";
+      ctx.fillStyle = "#00b1e1";
+      ctx.textAlign = "center";
+      ctx.fillText(name, canvas.width / 2, 50);
+
+      // تحويل الصورة والنص إلى بيانات URL
+      var dataURL = canvas.toDataURL("image/png");
+
+      // إنشاء رابط التنزيل
       var downloadLink = document.createElement("a");
       downloadLink.download = "edited_image.png";
-      downloadLink.href = image.src; // استخدام مصدر الصورة الأصلي
+      downloadLink.href = dataURL;
       downloadLink.click();
     }
   </script>
