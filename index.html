@@ -73,19 +73,15 @@
 
   <script>
     // تحميل المسارات من الملف JSON
-    var templates = {
-      "template": [
-        "template/EID1.PNG",
-        "template/EID2.png"
-      ]
-    };
-
-    // إنشاء خيارات الـ select
-    var selectOptions = "";
-    templates.template.forEach(function(path, index) {
-      selectOptions += `<option value="${path}">صورة ${index + 1}</option>`;
-    });
-    document.getElementById("imageSelect").innerHTML = selectOptions;
+    fetch('list.json')
+      .then(response => response.json())
+      .then(data => {
+        var selectOptions = "";
+        data.template.forEach(function(path, index) {
+          selectOptions += `<option value="${path}">صورة ${index + 1}</option>`;
+        });
+        document.getElementById("imageSelect").innerHTML = selectOptions;
+      });
 
     function previewImage() {
       var selectedImage = document.getElementById("imageSelect").value;
