@@ -31,6 +31,7 @@
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
+    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif; /* استخدام الخط */
   }
   .button-container {
     text-align: right; /* محاذاة الحقول من يمين الشاشة */
@@ -66,7 +67,7 @@
     </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
     <button onclick="previewImage()">تأكيد الاسم</button>
-    <button onclick="downloadImage()">حمل بطاقتك</button>
+    <button id="downloadBtn" style="display:none;">حمل بطاقتك</button> <!-- زر التحميل غير مرئي بالبداية -->
   </div>
   <br><br>
   <div id="preview"></div>
@@ -94,7 +95,7 @@
         var textY = canvas.height - 20; // الموضع العمودي (في الربع الأخير من الأسفل)
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px Arial";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif"; // استخدام الخط
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
@@ -105,6 +106,9 @@
         // عرض الصورة في المعاينة
         previewDiv.innerHTML = '';
         previewDiv.appendChild(img);
+
+        // عرض زر التحميل بعد تحميل الصورة
+        document.getElementById("downloadBtn").style.display = "inline";
       };
       img.src = selectedImage;
     }
@@ -131,7 +135,7 @@
         var textY = canvas.height - 20; // الموضع العمودي (في الربع الأخير من الأسفل)
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px Arial";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif"; // استخدام الخط
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
