@@ -14,17 +14,14 @@
     font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-    text-align: center; /* تحديد محاذاة النص في المركز */
   }
   h2 {
     color: #00b1e1;
     text-align: center;
-    margin-bottom: 20px; /* هامش من الأسفل */
   }
   #preview {
     position: relative;
     text-align: center;
-    margin-bottom: 20px; /* هامش من الأسفل */
   }
   #preview img {
     max-width: 100%;
@@ -34,50 +31,34 @@
   }
   #preview span {
     position: absolute;
-    font-size: 16px; /* حجم الخط للرسالة الجديدة */
+    font-size: 36px;
     color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
-    padding: 8px 16px; /* هامش داخلي */
-    border-radius: 5px;
-    bottom: 20px; /* المسافة من الأسفل */
-    left: 50%; /* توسيط أفقي */
-    transform: translateX(-50%); /* توسيط أفقي */
-    cursor: pointer;
+    padding: 10px 20px;
+    border-radius: 10px;
   }
   .button-container {
-    text-align: center; /* توسيط الزر وحقل النص */
+    text-align: right; /* محاذاة الحقول من يمين الشاشة */
     margin-bottom: 20px;
   }
   button {
     background-color: #00b1e1;
     color: white;
     border: none;
-    padding: 8px 16px; /* هامش داخلي */
+    padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin: 0 5px; /* هامش من اليمين واليسار */
-    transition: background-color 0.3s ease; /* تحويل اللون بشكل ناعم */
+    margin-left: 10px; /* إضافة هامش للتباعد بين الأزرار */
   }
   button:hover {
     background-color: #0089b7;
-  }
-  button:active {
-    background-color: #00a33e; /* تغيير لون الزر عند الضغط */
-  }
-  button.disabled {
-    background-color: #ccc; /* لون غير فعّال */
-    cursor: not-allowed; /* مؤشر غير قابل للتفعيل */
   }
   input[type="text"] {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    margin: 0 5px; /* هامش من اليمين واليسار */
-    width: 200px; /* عرض الحقل */
-  }
-  #signature {
-    font-size: 10px; /* حجم الخط الجديد */
-    margin-top: 10px; /* هامش من الأعلى */
+    margin-left: 10px; /* إضافة هامش للتباعد بين حقل النص والأزرار */
+    color: #00344d; /* لون النص */
   }
 </style>
 </head>
@@ -90,12 +71,11 @@
       <!-- يمكنك إضافة خيارات أخرى هنا -->
     </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
-    <button id="downloadButton" onclick="downloadImage()" disabled><span>&#128274;</span> حمل بطاقتك</button>
-    <button onclick="previewImage()" id="confirmButton"><span>&#128274;</span> تأكيد الاسم</button>
+    <button onclick="previewImage()">تأكيد الاسم</button>
+    <button onclick="downloadImage()">حمل بطاقتك</button>
   </div>
   <br><br>
   <div id="preview"></div>
-  <div id="signature">برمجة: أحمد حلمي</div>
   
   <script>
     function previewImage() {
@@ -131,8 +111,6 @@
         // عرض الصورة في المعاينة
         previewDiv.innerHTML = '';
         previewDiv.appendChild(img);
-        document.getElementById("downloadButton").disabled = false; // تفعيل زر تحميل البطاقة
-        document.getElementById("confirmButton").style.backgroundColor = "#00a33e"; // تغيير لون زر تأكيد الاسم بعد الضغط
       };
       img.src = selectedImage;
     }
