@@ -5,8 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تحرير الصورة</title>
 <style>
+  @font-face {
+    font-family: 'GE SS Two';
+    src: url('fonts/GE-SS-Two-Regular.otf') format('opentype');
+  }
+
   body {
-    font-family: Arial, sans-serif;
+    font-family: "GE SS Two", Arial, sans-serif; /* تحديد نوع الخط */
     background-color: #f0f0f0;
     color: #333;
   }
@@ -103,7 +108,7 @@
       ctx.drawImage(image, 0, 0);
 
       // إضافة النص إلى الصورة
-      ctx.font = "40px Arial";
+      ctx.font = "40px 'GE SS Two'"; /* تحديد نوع الخط */
       ctx.fillStyle = "#00b1e1";
       ctx.textAlign = "center";
       ctx.fillText(name, canvas.width / 2, 50);
