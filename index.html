@@ -5,37 +5,37 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>بطاقة معايدة</title>
     <style>
-        #card {
-            position: relative;
-            width: 300px;
-            height: 200px;
-            border: 1px solid #000;
-            padding: 20px;
-            text-align: center;
-            margin: 50px auto;
-        }
-
-        #name {
-            position: absolute;
-            top: 10px;
-            left: 50%;
-            transform: translateX(-50%);
+        canvas {
+            border: 1px solid black;
         }
     </style>
 </head>
 <body>
-    <div id="card">
-        <h2>بطاقة معايدة</h2>
-        <input type="text" id="name" placeholder="اكتب اسمك هنا">
-        <button onclick="saveName()">حفظ</button>
+    <div>
+        <!-- إضافة العنصر canvas -->
+        <canvas id="myCanvas" width="400" height="200"></canvas>
     </div>
 
+    <!-- يمكنك إضافة أي عناصر إضافية هنا -->
+
+    <!-- إذا كنت بحاجة إلى أي وظائف إضافية، يمكنك استخدام JavaScript هنا -->
+
     <script>
-        function saveName() {
-            var name = document.getElementById("name").value;
-            localStorage.setItem("employeeName", name);
-            alert("تم حفظ الاسم بنجاح!");
+        // احصل على عنصر الـ canvas
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // إضافة الصورة إلى الـ canvas
+        var img = new Image();
+        img.src = "template/template1jpg"; // استبدل بمسار الصورة الخاصة بك
+        img.onload = function() {
+            ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
         }
+
+        // إضافة النص إلى الـ canvas
+        ctx.font = "20px Arial"; // حجم الخط والنوع
+        ctx.fillStyle = "black"; // لون النص
+        ctx.fillText("اكتب النص هنا", 50, 100); // النص وموقعه على الـ canvas
     </script>
 </body>
 </html>
