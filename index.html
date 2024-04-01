@@ -31,7 +31,7 @@
   }
   #preview span {
     position: absolute;
-    bottom: 20px; /* تعديل المسافة بين النص والأسفل */
+    bottom: calc(50% + 2cm); /* تحديد المسافة بالنسبة للأعلى بمقدار 2 سم */
     left: 50%;
     transform: translate(-50%, 0%); /* تحديد الوضع الأفقي في الوسط */
     font-size: 36px;
@@ -86,7 +86,7 @@
       previewImg.src = selectedImage;
       previewImg.alt = "الصورة المعاينة";
       previewName.textContent = name;
-      previewName.style.bottom = "20px"; /* تعديل المسافة بين النص والأسفل */
+      previewName.style.bottom = "calc(50% + 2cm)"; /* تحريك النص إلى الأعلى بمقدار 2 سم */
       previewName.style.left = "50%";
       previewName.style.transform = "translate(-50%, 0%)"; /* تحديد الوضع الأفقي في الوسط */
       previewName.style.fontSize = "36px";
@@ -116,7 +116,7 @@
       ctx.font = "40px 'GE SS Two'"; /* تحديد نوع الخط */
       ctx.fillStyle = "#00b1e1";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, canvas.height - 50); /* تعديل مكان النص */
+      ctx.fillText(name, canvas.width / 2, canvas.height - 50); /* تعديل مكان النص إلى الأعلى بالوسط */
 
       // تحويل الصورة والنص إلى بيانات URL
       var dataURL = canvas.toDataURL("image/png");
