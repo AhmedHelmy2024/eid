@@ -3,26 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Background Story Page</title>
+    <title>بطاقة معايدة</title>
     <style>
-        body, html {
-            margin: 0;
-            padding: 0;
-            height: 100%;
+        #card {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            border: 1px solid #000;
+            padding: 20px;
+            text-align: center;
+            margin: 50px auto;
         }
 
-        .background-story {
-            background-image: url('your-image.jpg'); /* تغيير 'your-image.jpg' إلى اسم الصورة الخاصة بك */
-            background-size: cover;
-            background-position: center;
-            width: 100vw;
-            height: 100vh;
+        #name {
+            position: absolute;
+            top: 10px;
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
 <body>
-    <div class="background-story">
-        <!-- Content Goes Here -->
+    <div id="card">
+        <h2>بطاقة معايدة</h2>
+        <input type="text" id="name" placeholder="اكتب اسمك هنا">
+        <button onclick="saveName()">حفظ</button>
     </div>
+
+    <script>
+        function saveName() {
+            var name = document.getElementById("name").value;
+            localStorage.setItem("employeeName", name);
+            alert("تم حفظ الاسم بنجاح!");
+        }
+    </script>
 </body>
 </html>
