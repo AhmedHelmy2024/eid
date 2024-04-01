@@ -43,6 +43,7 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
+    margin-right: 10px; /* إضافة هامش للتباعد بين الأزرار */
   }
   button:hover {
     background-color: #0089b7;
@@ -51,21 +52,21 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    margin-right: 10px; /* إضافة هامش للتباعد بين حقل النص والأزرار */
+    margin-left: 10px; /* إضافة هامش للتباعد بين حقل النص والأزرار */
   }
 </style>
 </head>
 <body>
   <h2>تحرير الصورة</h2>
-  <select id="imageSelect">
-    <option value="template/EID1.png">لون 1 </option>
-    <option value="template/EID2.png">لون 2 </option>
-    <!-- يمكنك إضافة خيارات أخرى هنا -->
-  </select>
   <div class="button-container">
-    <input type="text" id="nameInput" placeholder="أدخل الاسم">
-    <button onclick="previewImage()">معاينة الصورة</button>
-    <button onclick="downloadImage()">احصل على بطاقتك</button>
+    <button onclick="previewImage()">معاينة</button>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك">
+    <select id="imageSelect">
+      <option value="template/EID1.png">اختيار لون</option>
+      <option value="template/EID2.png">لون 2 </option>
+      <!-- يمكنك إضافة خيارات أخرى هنا -->
+    </select>
+    <button onclick="downloadImage()">حمل بطاقتك</button>
   </div>
   <br><br>
   <div id="preview"></div>
