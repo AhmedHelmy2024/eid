@@ -35,6 +35,9 @@
     padding: 10px 20px;
     border-radius: 10px;
   }
+  .button-container {
+    text-align: center;
+  }
   button {
     background-color: #00b1e1;
     color: white;
@@ -62,12 +65,13 @@
   </select>
   <br><br>
   <input type="text" id="nameInput" placeholder="أدخل الاسم">
-  <button onclick="previewImage()">معاينة الصورة</button>
+  <div class="button-container">
+    <button onclick="previewImage()">معاينة الصورة</button>
+    <button onclick="downloadImage()">تحميل الصورة النهائية</button>
+  </div>
   <br><br>
   <div id="preview"></div>
-  <br><br>
-  <button onclick="downloadImage()">تحميل الصورة النهائية</button>
-
+  
   <script>
     function previewImage() {
       var selectedImage = document.getElementById("imageSelect").value;
