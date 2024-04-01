@@ -99,7 +99,7 @@
     function downloadImage() {
       var previewDiv = document.getElementById("preview");
       var image = previewDiv.querySelector("img");
-      var name = previewDiv.querySelector("span").textContent;
+      var name = document.getElementById("nameInput").value;
 
       // إنشاء الـ Canvas
       var canvas = document.createElement("canvas");
