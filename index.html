@@ -1,109 +1,50 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>تحرير الصورة</title>
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f0f0f0;
-    color: #333;
-  }
-  h2 {
-    color: #00b1e1;
-    text-align: center;
-  }
-  #preview {
-    position: relative;
-    text-align: center;
-  }
-  #preview img {
-    max-width: 100%;
-    height: auto;
-  }
-  #preview span {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-size: 36px;
-    color: #00b1e1; /* Changing the text color to #00b1e1 */
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
-    border-radius: 10px;
-  }
-  button {
-    background-color: #00b1e1; /* Changing button background color to #00b1e1 */
-    color: white;
-    border: none;
-    padding: 10px 20px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  button:hover {
-    background-color: #0089b7; /* Darker shade for hover effect */
-  }
-  input[type="text"] {
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-  }
-</style>
-</head>
-<body>
-  <h2>تحرير الصورة</h2>
-  <select id="imageSelect">
-    <option value="template/template1.jpg">صورة 1</option>
-    <option value="path/to/image2.jpg">صورة 2</option>
-    <!-- You can add more options here -->
-  </select>
-  <br><br>
-  <input type="text" id="nameInput" placeholder="أدخل الاسم">
-  <button onclick="previewImage()">معاينة الصورة</button>
-  <br><br>
-  <div id="preview"></div>
-  <br><br>
-  <button onclick="downloadImage()">تحميل الصورة النهائية</button>
+function previewImage() {
+  var selectedImage = document.getElementById("imageSelect").value;
+  var name = document.getElementById("nameInput").value;
+  var previewDiv = document.getElementById("preview");
 
-  <script>
-    function previewImage() {
-      var selectedImage = document.getElementById("imageSelect").value;
-      var name = document.getElementById("nameInput").value;
-      var previewDiv = document.getElementById("preview");
+  var img = new Image();
+  img.onload = function() {
+    var maxWidth = 400; // تعيين العرض الأقصى للمعاينة والصورة المحمّلة
+    var maxHeight = 400; // تعيين الارتفاع الأقصى للمعاينة والصورة المحمّلة
+    var width = img.width;
+    var height = img.height;
 
-      var img = document.createElement("img");
-      img.src = selectedImage;
-      img.alt = "الصورة المعاينة";
-
-      var nameSpan = document.createElement("span");
-      nameSpan.textContent = name;
-
-      previewDiv.innerHTML = "";
-      previewDiv.appendChild(img);
-      previewDiv.appendChild(nameSpan);
+    if (width > height) {
+      if (width > maxWidth) {
+        height *= maxWidth / width;
+        width = maxWidth;
+      }
+    } else {
+      if (height > maxHeight) {
+        width *= maxHeight / height;
+        height = maxHeight;
+      }
     }
 
-    function downloadImage() {
-      var previewDiv = document.getElementById("preview");
-      var image = previewDiv.querySelector("img");
-      var name = previewDiv.querySelector("span").textContent;
+    var canvas = document.createElement("canvas");
+    canvas.width = width;
+    canvas.height = height;
+    var ctx = canvas.getContext("2d");
+    ctx.drawImage(img, 0, 0, width, height);
+    ctx.font = "36px Arial"; // تعيين حجم الخط للنص
+    ctx.fillStyle = "#00b1e1"; // تعيين لون النص
+    ctx.textAlign = "center";
+    ctx.fillText(name, width / 2, height - 20); // ضبط موضع النص
 
-      var canvas = document.createElement("canvas");
-      canvas.width = image.width;
-      canvas.height = image.height;
-      var ctx = canvas.getContext("2d");
-      ctx.drawImage(image, 0, 0);
-      ctx.font = "40px Arial";
-      ctx.fillStyle = "#00b1e1"; /* Changing text color to #00b1e1 */
-      ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, 50);
+    previewDiv.innerHTML = "";
+    previewDiv.appendChild(canvas);
+  };
+  img.src = selectedImage;
+}
 
-      var downloadLink = document.createElement("a");
-      downloadLink.download = "edited_image.png";
-      downloadLink.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
-      downloadLink.click();
-    }
-  </script>
-</body>
-</html>
+function downloadImage() {
+  var previewDiv = document.getElementById("preview");
+  var canvas = previewDiv.querySelector("canvas");
+  var name = document.getElementById("nameInput").value;
+
+  var downloadLink = document.createElement("a");
+  downloadLink.download = "edited_image.png";
+  downloadLink.href = canvas.toDataURL("image/png").replace("image/png", "image/octet-stream");
+  downloadLink.click();
+}
