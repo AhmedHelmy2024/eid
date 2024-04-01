@@ -5,8 +5,13 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>بطاقة معايدة - PV</title>
 <style>
+  @font-face {
+    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM';
+    src: url('fonts/ArbFONTS-GE_SS_TWO_MEDIUM.otf') format('opentype');
+  }
+
   body {
-    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM.otf', Arial, sans-serif;
+    font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
   }
@@ -94,7 +99,7 @@
         var textY = 672; // المسافة من الأعلى بالبكسل
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM.otf'";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
@@ -131,7 +136,7 @@
         var textY = 672; // المسافة من الأعلى بالبكسل
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM.otf'";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
