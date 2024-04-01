@@ -65,12 +65,50 @@
       <!-- يمكنك إضافة خيارات أخرى هنا -->
     </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
+    <button onclick="previewImage()">تأكيد الاسم</button>
     <button onclick="downloadImage()">حمل بطاقتك</button>
   </div>
   <br><br>
   <div id="preview"></div>
   
   <script>
+    function previewImage() {
+      var selectedImage = document.getElementById("imageSelect").value;
+      var name = document.getElementById("nameInput").value;
+      var previewDiv = document.getElementById("preview");
+
+      var img = new Image();
+      img.onload = function() {
+        var canvas = document.createElement("canvas");
+        var ctx = canvas.getContext("2d");
+        
+        // تعيين عرض وارتفاع الـ Canvas
+        canvas.width = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+
+        // رسم الصورة على الـ Canvas
+        ctx.drawImage(img, 0, 0);
+
+        // تحديد موضع النص على الصورة
+        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
+        var textY = canvas.height - 20; // الموضع العمودي (في الربع الأخير من الأسفل)
+
+        // إضافة النص إلى الصورة
+        ctx.font = "40px Arial";
+        ctx.fillStyle = "#00b1e1";
+        ctx.textAlign = "center";
+        ctx.fillText(name, textX, textY);
+
+        // تحويل الصورة والنص إلى بيانات URL
+        var dataURL = canvas.toDataURL("image/png");
+
+        // عرض الصورة في المعاينة
+        previewDiv.innerHTML = '';
+        previewDiv.appendChild(img);
+      };
+      img.src = selectedImage;
+    }
+
     function downloadImage() {
       var selectedImage = document.getElementById("imageSelect").value;
       var name = document.getElementById("nameInput").value;
