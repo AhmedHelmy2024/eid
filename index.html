@@ -15,6 +15,8 @@
     background-color: #f0f0f0;
     color: #333;
     text-align: center;
+    padding: 10px; /* إضافة هامش داخلي للجسم */
+    box-sizing: border-box; /* ضمان تضمين الهامش داخل حجم العناصر */
   }
   h2 {
     color: #00b1e1;
@@ -22,19 +24,21 @@
   #preview {
     margin: 0 auto;
     text-align: center;
+    max-width: 100%; /* تحديد العرض الأقصى */
+    overflow: hidden; /* منع التمدد الزائد */
   }
   #preview img {
-    max-width: 100%;
-    height: auto;
+    max-width: 100%; /* جعل الصورة تحتل العرض الكامل للمعاينة */
+    height: auto; /* السماح للصورة بالتحجيم تلقائياً بناءً على عرض الشاشة */
   }
   #preview span {
     position: absolute;
-    font-size: 36px;
-    color: #00b1e1;
+    font-size: 3vw; /* استخدام وحدة قياس نسبية */
+    color: #00344d;
     background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
-    border-radius: 10px;
-    top: 672px;
+    padding: 1vw 2vw; /* استخدام وحدة قياس نسبية */
+    border-radius: 2vw; /* استخدام وحدة قياس نسبية */
+    top: 70vw; /* استخدام وحدة قياس نسبية */
     left: 50%;
     transform: translateX(-50%);
   }
@@ -42,42 +46,43 @@
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
-    margin-bottom: 20px;
+    gap: 3vw; /* استخدام وحدة قياس نسبية */
+    margin-bottom: 5vw; /* استخدام وحدة قياس نسبية */
   }
   button {
     background-color: #00b1e1;
     color: white;
     border: none;
-    padding: 10px 20px;
+    padding: 2vw 4vw; /* استخدام وحدة قياس نسبية */
     cursor: pointer;
-    border-radius: 5px;
+    border-radius: 2vw; /* استخدام وحدة قياس نسبية */
     flex: 1;
-    max-width: 200px;
+    max-width: 30vw; /* استخدام وحدة قياس نسبية */
   }
   button:hover {
     background-color: #0089b7;
   }
   input[type="text"] {
-    padding: 10px;
-    border-radius: 5px;
+    padding: 2vw; /* استخدام وحدة قياس نسبية */
+    border-radius: 2vw; /* استخدام وحدة قياس نسبية */
     border: 1px solid #ddd;
     flex: 1;
-    max-width: 200px;
+    max-width: 30vw; /* استخدام وحدة قياس نسبية */
+    color: #00344d;
   }
 </style>
 </head>
 <body>
   <h2>بطاقة معايدة - PV</h2>
   <div class="button-container">
-    <select id="imageSelect">
+    <select id="imageSelect" style="padding: 2vw; border-radius: 2vw;">
       <option value="template/EID1.png">1 لون </option>
       <option value="template/EID2.png">لون 2 </option>
       <!-- يمكنك إضافة خيارات أخرى هنا -->
     </select>
-    <input type="text" id="nameInput" placeholder="اكتب اسمك">
-    <button onclick="previewImage()">تأكيد الاسم</button>
-    <button onclick="downloadImage()">حمل بطاقتك</button>
+    <input type="text" id="nameInput" placeholder="اكتب اسمك" style="padding: 2vw; border-radius: 2vw;">
+    <button onclick="previewImage()" style="padding: 2vw 4vw; border-radius: 2vw;">تأكيد الاسم</button>
+    <button onclick="downloadImage()" style="padding: 2vw 4vw; border-radius: 2vw;">حمل بطاقتك</button>
   </div>
   <br><br>
   <div id="preview"></div>
@@ -102,11 +107,11 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 672; // المسافة من الأعلى بالبكسل
+        var textY = 0.7 * canvas.height; // المسافة من الأعلى بنسبة من ارتفاع الصورة
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
-        ctx.fillStyle = "#00b1e1";
+        ctx.font = "3vw 'ArbFONTS-GE_SS_TWO_MEDIUM'"; // استخدام وحدة قياس نسبية
+        ctx.fillStyle = "#00344d";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
@@ -136,11 +141,11 @@
 
         // تحديد موضع النص على الصورة
         var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 672; // المسافة من الأعلى بالبكسل
+        var textY = 0.7 * canvas.height; // المسافة من الأعلى بنسبة من ارتفاع الصورة
 
         // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
-        ctx.fillStyle = "#00b1e1";
+        ctx.font = "3vw 'ArbFONTS-GE_SS_TWO_MEDIUM'"; // استخدام وحدة قياس نسبية
+        ctx.fillStyle = "#00344d";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
