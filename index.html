@@ -11,7 +11,7 @@
   }
 
   body {
-    font-family: "GE SS Two", Arial, sans-serif;
+    font-family: "GE SS Two", Arial, sans-serif; /* تحديد نوع الخط */
     background-color: #f0f0f0;
     color: #333;
   }
@@ -31,9 +31,9 @@
   }
   #preview span {
     position: absolute;
-    top: 50%;
+    bottom: 10px; /* تعديل المسافة بين النص والأسفل */
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%, 0%); /* تحديد الوضع الأفقي في الوسط */
     font-size: 36px;
     color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
@@ -61,9 +61,9 @@
 <body>
   <h2>تحرير الصورة</h2>
   <select id="imageSelect">
-    <option value="template/EID1.png">صورة 1</option>
-    <option value="template/EID2.png">صورة 2</option>
-    <!-- يمكنك إضافة المزيد من الخيارات هنا حسب الحاجة -->
+    <option value="template/template1.jpg">صورة 1</option>
+    <option value="path/to/image2.jpg">صورة 2</option>
+    <!-- يمكنك إضافة خيارات أخرى هنا -->
   </select>
   <br><br>
   <input type="text" id="nameInput" placeholder="اكتب الاسم بالعربية">
@@ -96,21 +96,27 @@
       var image = previewDiv.querySelector("img");
       var name = previewDiv.querySelector("span").textContent;
 
+      // إنشاء الـ Canvas
       var canvas = document.createElement("canvas");
       var ctx = canvas.getContext("2d");
 
+      // تعيين عرض وارتفاع الـ Canvas
       canvas.width = image.naturalWidth;
       canvas.height = image.naturalHeight;
 
+      // رسم الصورة على الـ Canvas
       ctx.drawImage(image, 0, 0);
 
-      ctx.font = "40px 'GE SS Two'";
+      // إضافة النص إلى الصورة
+      ctx.font = "40px 'GE SS Two'"; /* تحديد نوع الخط */
       ctx.fillStyle = "#00b1e1";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, 50);
+      ctx.fillText(name, canvas.width / 2, canvas.height - 30); /* تعديل مكان النص */
 
+      // تحويل الصورة والنص إلى بيانات URL
       var dataURL = canvas.toDataURL("image/png");
 
+      // إنشاء رابط التنزيل
       var downloadLink = document.createElement("a");
       downloadLink.download = "edited_image.png";
       downloadLink.href = dataURL;
