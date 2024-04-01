@@ -78,8 +78,8 @@
       <!-- يمكنك إضافة خيارات أخرى هنا -->
     </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
-    <button id="confirmButton" onclick="previewImage()">حمل بطاقتك</button>
-    <button onclick="downloadImage()">تأكيد الاسم</button>
+    <button id="downloadButton" onclick="downloadImage()">حمل بطاقتك</button>
+    <button onclick="previewImage()">تأكيد الاسم</button>
   </div>
   <br><br>
   <div id="preview"></div>
@@ -119,9 +119,6 @@
         // عرض الصورة في المعاينة
         previewDiv.innerHTML = '';
         previewDiv.appendChild(img);
-
-        // تغيير لون زر التأكيد
-        document.getElementById("confirmButton").style.backgroundColor = "#4CAF50"; // اللون الأخضر
       };
       img.src = selectedImage;
     }
@@ -163,6 +160,7 @@
         downloadLink.click();
       };
       img.src = selectedImage;
+      document.getElementById("downloadButton").style.backgroundColor = "#4CAF50"; // تغيير لون الزر بعد الضغط
     }
   </script>
 </body>
