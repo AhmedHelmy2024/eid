@@ -64,6 +64,10 @@
   button:active {
     background-color: #00a33e; /* تغيير لون الزر عند الضغط */
   }
+  button.disabled {
+    background-color: #ccc; /* لون غير فعّال */
+    cursor: not-allowed; /* مؤشر غير قابل للتفعيل */
+  }
   input[type="text"] {
     padding: 10px;
     border-radius: 5px;
@@ -91,7 +95,7 @@
   </div>
   <br><br>
   <div id="preview"></div>
-  <span id="signature">Programmed by Ahmed Helmy</span>
+  <div id="signature">برمجة: أحمد حلمي</div>
   
   <script>
     function previewImage() {
@@ -129,6 +133,7 @@
         previewDiv.appendChild(img);
         document.getElementById("downloadButton").disabled = false; // تفعيل زر تحميل البطاقة
         document.getElementById("confirmButton").style.backgroundColor = "#00a33e"; // تغيير لون زر تأكيد الاسم بعد الضغط
+        document.getElementById("downloadButton").classList.remove("disabled"); // إزالة الخصائص المعطلة عن زر تحميل البطاقة
       };
       img.src = selectedImage;
     }
