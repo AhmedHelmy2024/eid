@@ -22,11 +22,27 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
+        .canvas-container {
+            position: relative;
+            margin-top: 20px;
+        }
+
         #canvas {
             border: 2px solid #00bef1;
             max-width: 100%;
-            margin-top: 20px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .name-text {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 30px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px 20px;
+            border-radius: 5px;
         }
 
         input[type="text"] {
@@ -84,10 +100,7 @@
     <h2>MERGING - PV LOGO </h2>
 
     <!-- حقل النص لكتابة الاسم -->
-    <input type="text" id="nameInput" placeholder="اكتب الاسم الذي ترغب في إضافته على الصورة">
-    
-    <!-- صورة المدموجة -->
-    <canvas id="canvas"></canvas>
+    <input type="text" id="nameInput" placeholder="اكتب الاسم الذي ترغب في إضافته على القالب">
 
     <!-- قائمة منسدلة لاختيار القالب -->
     <select id="templateList" title="اختر القالب">
@@ -101,8 +114,15 @@
         </a>
     </div>
 
+    <!-- حاوية لعنصر الكانفاس -->
+    <div class="canvas-container">
+        <!-- صورة المدموجة -->
+        <canvas id="canvas"></canvas>
+        <!-- النص الذي سيتم كتابته على القالب -->
+        <div id="nameText" class="name-text"></div>
+    </div>
+
     <script>
-        let image1;
         let image2;
         let nameText = "";
         const templateList = document.getElementById('templateList');
@@ -143,7 +163,7 @@
                     canvas.height = image2.height;
                     ctx.drawImage(image2, 0, 0);
 
-                    // رسم النص على الصورة
+                    // رسم النص على القالب
                     ctx.font = "30px Arial";
                     ctx.fillStyle = "white";
                     ctx.textAlign = "center";
