@@ -5,13 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>تحرير الصورة</title>
 <style>
-  @font-face {
-    font-family: 'GE SS Two';
-    src: url('fonts/ArbFONTS-GE_SS_TWO_MEDIUM.otf') format('opentype');
-  }
-
   body {
-    font-family: "GE SS Two", Arial, sans-serif; /* تحديد نوع الخط */
+    font-family: Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
   }
@@ -31,30 +26,24 @@
   }
   #preview span {
     position: absolute;
-    bottom: calc(50% + 2cm); /* تحديد المسافة بالنسبة للأعلى بمقدار 2 سم */
+    top: 50%;
     left: 50%;
-    transform: translate(-50%, 0%); /* تحديد الوضع الأفقي في الوسط */
+    transform: translate(-50%, -50%);
     font-size: 36px;
     color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
   }
-  .btn-group {
-    display: flex;
-    justify-content: center; /* محاذاة الأزرار بالوسط أفقيًا */
-    margin-top: 20px;
-  }
-  .btn-group button {
+  button {
     background-color: #00b1e1;
     color: white;
     border: none;
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin: 0 10px; /* تباعد بين الأزرار */
   }
-  .btn-group button:hover {
+  button:hover {
     background-color: #0089b7;
   }
   input[type="text"] {
@@ -62,30 +51,45 @@
     border-radius: 5px;
     border: 1px solid #ddd;
   }
-  .copyright {
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-  }
 </style>
 </head>
 <body>
   <h2>تحرير الصورة</h2>
-  <input type="text" id="nameInput" placeholder="اكتب الاسم بالعربية">
-  <div id="preview">
-    <img id="previewImage" src="" alt="">
-    <span id="previewName"></span>
-  </div>
-  <div class="btn-group">
-    <button onclick="downloadImage()">تحميل الصورة النهائية</button>
-  </div>
-  <div class="copyright">حقوق الملكية &copy; أحمد حلمي</div>
+  <select id="imageSelect">
+    <option value="template/template1.jpg">صورة 1</option>
+    <option value="path/to/image2.jpg">صورة 2</option>
+    <!-- يمكنك إضافة خيارات أخرى هنا -->
+  </select>
+  <br><br>
+  <input type="text" id="nameInput" placeholder="أدخل الاسم">
+  <button onclick="previewImage()">معاينة الصورة</button>
+  <br><br>
+  <div id="preview"></div>
+  <br><br>
+  <button onclick="downloadImage()">تحميل الصورة النهائية</button>
 
   <script>
+    function previewImage() {
+      var selectedImage = document.getElementById("imageSelect").value;
+      var name = document.getElementById("nameInput").value;
+      var previewDiv = document.getElementById("preview");
+
+      var img = document.createElement("img");
+      img.src = selectedImage;
+      img.alt = "الصورة المعاينة";
+
+      var nameSpan = document.createElement("span");
+      nameSpan.textContent = name;
+
+      previewDiv.innerHTML = "";
+      previewDiv.appendChild(img);
+      previewDiv.appendChild(nameSpan);
+    }
+
     function downloadImage() {
       var previewDiv = document.getElementById("preview");
       var image = previewDiv.querySelector("img");
-      var name = document.getElementById("nameInput").value;
+      var name = previewDiv.querySelector("span").textContent;
 
       // إنشاء الـ Canvas
       var canvas = document.createElement("canvas");
@@ -99,10 +103,10 @@
       ctx.drawImage(image, 0, 0);
 
       // إضافة النص إلى الصورة
-      ctx.font = "40px 'GE SS Two'"; /* تحديد نوع الخط */
+      ctx.font = "40px Arial";
       ctx.fillStyle = "#00b1e1";
       ctx.textAlign = "center";
-      ctx.fillText(name, canvas.width / 2, canvas.height - 50); /* تعديل مكان النص إلى الأعلى بالوسط */
+      ctx.fillText(name, canvas.width / 2, 50);
 
       // تحويل الصورة والنص إلى بيانات URL
       var dataURL = canvas.toDataURL("image/png");
