@@ -61,7 +61,7 @@
 <body>
   <h2>تحرير الصورة</h2>
   <select id="imageSelect">
-    <!-- يتم توليد الخيارات من الملف JSON -->
+    <!-- يتم توليد الخيارات من المسار JSON -->
   </select>
   <br><br>
   <input type="text" id="nameInput" placeholder="اكتب الاسم بالعربية">
@@ -73,15 +73,19 @@
 
   <script>
     // تحميل المسارات من الملف JSON
-    fetch('list.json')
-      .then(response => response.json())
-      .then(data => {
-        var selectOptions = "";
-        data.template.forEach(function(path, index) {
-          selectOptions += `<option value="${path}">صورة ${index + 1}</option>`;
-        });
-        document.getElementById("imageSelect").innerHTML = selectOptions;
-      });
+    var templates = {
+      "template": [
+        "TEMPLATE/EID1.PNG",
+        "TEMPLATE/EID2.PNG"
+      ]
+    };
+
+    // إنشاء خيارات الـ select
+    var selectOptions = "";
+    templates.template.forEach(function(path, index) {
+      selectOptions += `<option value="${path}">صورة ${index + 1}</option>`;
+    });
+    document.getElementById("imageSelect").innerHTML = selectOptions;
 
     function previewImage() {
       var selectedImage = document.getElementById("imageSelect").value;
