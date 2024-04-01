@@ -14,21 +14,35 @@
     font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
-    padding: 20px;
-    text-align: center;
   }
   h2 {
     color: #00b1e1;
+    text-align: center;
   }
   #preview {
-    margin-top: 20px;
+    position: relative;
+    text-align: center;
   }
   #preview img {
     max-width: 100%;
+    max-height: 100%;
     height: auto;
+    width: auto;
+  }
+  #preview span {
+    position: absolute;
+    font-size: 36px;
+    color: #00b1e1;
+    background-color: rgba(255, 255, 255, 0.7);
+    padding: 10px 20px;
+    border-radius: 10px;
+    top: 672px;
+    left: 50%;
+    transform: translateX(-50%);
   }
   .button-container {
-    margin-top: 20px;
+    text-align: right; /* محاذاة الحقول من يمين الشاشة */
+    margin-bottom: 20px;
   }
   button {
     background-color: #00b1e1;
@@ -37,8 +51,7 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin: 5px;
-    font-size: 16px;
+    margin-left: 10px; /* إضافة هامش للتباعد بين الأزرار */
   }
   button:hover {
     background-color: #0089b7;
@@ -47,29 +60,29 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    margin: 5px;
-    width: calc(100% - 22px);
-    font-size: 16px;
-  }
-  .programmed {
-    font-size: 12px;
-    margin-top: 20px;
+    margin-left: 10px; /* إضافة هامش للتباعد بين حقل النص والأزرار */
+    color: #00344d; /* لون النص */
   }
 </style>
 </head>
 <body>
   <h2>بطاقة معايدة - PV</h2>
   <div class="button-container">
+    <select id="imageSelect">
+      <option value="template/EID1.png">1 لون </option>
+      <option value="template/EID2.png">لون 2 </option>
+      <!-- يمكنك إضافة خيارات أخرى هنا -->
+    </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
     <button onclick="previewImage()">تأكيد الاسم</button>
-    <button id="downloadBtn" onclick="downloadImage()" disabled>حمل بطاقتك</button>
+    <button onclick="downloadImage()">حمل بطاقتك</button>
   </div>
+  <br><br>
   <div id="preview"></div>
-  <p class="programmed">Programmed by Ahmed Helmy</p>
   
   <script>
     function previewImage() {
-      var selectedImage = "template/EID1.png"; // قم بتغيير الصورة إذا كانت تحمل اسمًا مختلفًا
+      var selectedImage = document.getElementById("imageSelect").value;
       var name = document.getElementById("nameInput").value;
       var previewDiv = document.getElementById("preview");
 
@@ -78,53 +91,61 @@
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
         
+        // تعيين عرض وارتفاع الـ Canvas
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
 
+        // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        var textX = canvas.width / 2;
-        var textY = canvas.height - 20;
+        // تحديد موضع النص على الصورة
+        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
+        var textY = 672; // المسافة من الأعلى بالبكسل
 
+        // إضافة النص إلى الصورة
         ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
-        ctx.fillStyle = "#00344d";
+        ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
-        var dataURL = canvas.toDataURL("image/png");
-
+        // إضافة الصورة إلى المعاينة
         previewDiv.innerHTML = '';
-        var previewImg = new Image();
-        previewImg.src = dataURL;
-        previewDiv.appendChild(previewImg);
-        document.getElementById("downloadBtn").disabled = false;
+        previewDiv.appendChild(canvas);
       };
       img.src = selectedImage;
     }
 
     function downloadImage() {
-      var selectedImage = "template/EID1.png"; // قم بتغيير الصورة إذا كانت تحمل اسمًا مختلفًا
+      var selectedImage = document.getElementById("imageSelect").value;
       var name = document.getElementById("nameInput").value;
+      var previewDiv = document.getElementById("preview");
+
       var img = new Image();
       img.onload = function() {
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
         
+        // تعيين عرض وارتفاع الـ Canvas
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
 
+        // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        var textX = canvas.width / 2;
-        var textY = canvas.height - 20;
+        // تحديد موضع النص على الصورة
+        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
+        var textY = 672; // المسافة من الأعلى بالبكسل
 
+        // إضافة النص إلى الصورة
         ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
-        ctx.fillStyle = "#00344d";
+        ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
+        // تحويل الصورة والنص إلى بيانات URL
         var dataURL = canvas.toDataURL("image/png");
 
+        // إنشاء رابط التنزيل
         var downloadLink = document.createElement("a");
         downloadLink.download = "edited_image.png";
         downloadLink.href = dataURL;
