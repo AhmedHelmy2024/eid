@@ -60,12 +60,19 @@
   button:hover {
     background-color: #0089b7;
   }
+  button:active {
+    background-color: #001a33; /* لون الكحلي الغامق عند الضغط */
+  }
   input[type="text"] {
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
     margin: 0 5px; /* هامش من اليمين واليسار */
     width: 200px; /* عرض الحقل */
+  }
+  #signature {
+    font-size: 10px; /* حجم الخط الجديد */
+    margin-top: 10px; /* هامش من الأعلى */
   }
 </style>
 </head>
@@ -83,7 +90,7 @@
   </div>
   <br><br>
   <div id="preview"></div>
-  <span>Programmed by Ahmed Helmy</span>
+  <span id="signature">Programmed by Ahmed Helmy</span>
   
   <script>
     function previewImage() {
@@ -160,7 +167,7 @@
         downloadLink.click();
       };
       img.src = selectedImage;
-      document.getElementById("downloadButton").style.backgroundColor = "#4CAF50"; // تغيير لون الزر بعد الضغط
+      document.getElementById("downloadButton").style.backgroundColor = "#001a33"; // تغيير لون الزر بعد الضغط
     }
   </script>
 </body>
