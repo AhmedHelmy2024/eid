@@ -14,20 +14,18 @@
     font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM', Arial, sans-serif;
     background-color: #f0f0f0;
     color: #333;
+    text-align: center;
   }
   h2 {
     color: #00b1e1;
-    text-align: center;
   }
   #preview {
-    position: relative;
+    margin: 0 auto;
     text-align: center;
   }
   #preview img {
     max-width: 100%;
-    max-height: 100%;
     height: auto;
-    width: auto;
   }
   #preview span {
     position: absolute;
@@ -41,7 +39,10 @@
     transform: translateX(-50%);
   }
   .button-container {
-    text-align: right; /* محاذاة الحقول من يمين الشاشة */
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
     margin-bottom: 20px;
   }
   button {
@@ -51,7 +52,8 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    margin-left: 10px; /* إضافة هامش للتباعد بين الأزرار */
+    flex: 1;
+    max-width: 200px;
   }
   button:hover {
     background-color: #0089b7;
@@ -60,8 +62,8 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    margin-left: 10px; /* إضافة هامش للتباعد بين حقل النص والأزرار */
-    color: #00344d; /* لون النص */
+    flex: 1;
+    max-width: 200px;
   }
 </style>
 </head>
