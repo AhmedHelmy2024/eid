@@ -85,6 +85,9 @@
 
     <input type="file" id="image1Input" accept="image/*" title="رفع الصورة المراد إضافة الشعار لها">
     
+    <!-- صورة المدموجة -->
+    <canvas id="canvas"></canvas>
+
     <!-- قائمة منسدلة لاختيار الصورة الثانية -->
     <select id="templateList" title="اختر القالب">
         <option value="" disabled selected>اختر القالب</option>
@@ -96,8 +99,6 @@
             <button>تحميل الصورة المدموجة</button>
         </a>
     </div>
-
-    <canvas id="canvas"></canvas>
 
     <script>
         let image1;
