@@ -15,6 +15,7 @@
     background-color: #f0f0f0;
     color: #333;
     text-align: center;
+    margin-top: 100px; /* توسيع المساحة العلوية لجعل مكان للأزرار */
   }
   h2 {
     color: #00b1e1;
@@ -39,15 +40,12 @@
     transform: translateX(-50%);
   }
   .button-container {
-    position: fixed; /* تثبيت الأزرار في الخلفية */
-    bottom: 20px; /* تحديد المسافة من الأسفل */
-    left: 0;
-    right: 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
-    margin-bottom: 20px;
+    background-color: white; /* تحديد خلفية للأزرار لمزيد من التباين */
+    padding: 10px 0; /* إضافة بعض الهوامش للأزرار */
     z-index: 999; /* ضمان عرض الأزرار فوق أي عناصر أخرى */
   }
   button {
