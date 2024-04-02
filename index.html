@@ -27,21 +27,19 @@
     justify-content: center;
     align-items: center;
     height: 70vh; /* تحديد ارتفاع المعاينة بنسبة من ارتفاع الشاشة */
+    position: relative; /* تحديد الموقع النسبي للعنصر الفرعي */
   }
   #preview img {
     max-width: 100%; /* الصورة تأخذ عرض الشاشة بالكامل */
     max-height: 100%; /* الصورة تأخذ ارتفاع الشاشة بالكامل */
   }
-  #preview span {
+  #nameSpan {
     position: absolute;
-    font-size: 36px;
+    font-size: 24px; /* تقليل حجم الخط ليتناسب مع المساحة */
     color: #00b1e1;
-    background-color: rgba(255, 255, 255, 0.7);
-    padding: 10px 20px;
-    border-radius: 10px;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 10px; /* وضع النص في الجزء السفلي من المعاينة */
+    left: 50%; /* توسيط النص أفقياً */
+    transform: translateX(-50%); /* توسيط النص أفقياً بالنسبة للعنصر الأب */
   }
   .button-container {
     display: flex;
