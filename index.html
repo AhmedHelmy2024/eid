@@ -86,6 +86,7 @@
   <br><br>
   <div id="preview">
     <img src="" alt="معاينة الصورة">
+    <span id="nameSpan"></span>
   </div>
   
   <script>
@@ -93,15 +94,17 @@
       var selectedImage = document.getElementById("imageSelect").value;
       var name = document.getElementById("nameInput").value;
       var previewImg = document.querySelector("#preview img");
+      var nameSpan = document.getElementById("nameSpan");
 
       previewImg.src = selectedImage;
-      previewImg.alt = "معاينة الصورة";
+      nameSpan.textContent = name;
     }
 
     function downloadImage() {
       var selectedImage = document.getElementById("imageSelect").value;
       var name = document.getElementById("nameInput").value;
       var previewImg = document.querySelector("#preview img");
+      var nameSpan = document.getElementById("nameSpan");
 
       var a = document.createElement("a");
       a.href = selectedImage;
