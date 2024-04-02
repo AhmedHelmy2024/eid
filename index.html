@@ -39,11 +39,16 @@
     transform: translateX(-50%);
   }
   .button-container {
+    position: fixed; /* تثبيت الأزرار في الخلفية */
+    bottom: 20px; /* تحديد المسافة من الأسفل */
+    left: 0;
+    right: 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 10px;
     margin-bottom: 20px;
+    z-index: 999; /* ضمان عرض الأزرار فوق أي عناصر أخرى */
   }
   button {
     background-color: #00b1e1;
@@ -52,9 +57,7 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    flex: 1;
     max-width: 200px;
-    text-align: center; /* توسيط الأزرار */
   }
   button:hover {
     background-color: #0089b7;
@@ -63,7 +66,6 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    flex: 1;
     max-width: 200px;
   }
 </style>
