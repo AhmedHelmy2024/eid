@@ -64,7 +64,7 @@
     border: 1px solid #ddd;
     flex: 1;
     max-width: 200px;
-    text-align: center; /* توسيط النص */
+    text-align: center; /* توسيط النص داخل الحقل */
   }
 </style>
 </head>
@@ -86,7 +86,7 @@
   <script>
     function previewImage() {
       var selectedImage = document.getElementById("imageSelect").value;
-      var name = document.getElementById("nameInput").value;
+      var name = "   " + document.getElementById("nameInput").value; // إضافة ثلاث مسافات قبل الاسم
       var previewDiv = document.getElementById("preview");
 
       var img = new Image();
@@ -101,9 +101,14 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 672; // المسافة من الأعلى بالبكسل
+        // حساب عرض النص
+        var textWidth = ctx.measureText(name).width;
+
+        // تحديد موضع النص على الصورة (الأفقي)
+        var textX = (canvas.width - textWidth) / 2; // الموضع الأفقي (بالوسط)
+
+        // تحديد موضع النص على الصورة (العمودي)
+        var textY = canvas.height / 2; // الموضع العمودي (بالمنتصف)
 
         // إضافة النص إلى الصورة
         ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
@@ -120,7 +125,7 @@
 
     function downloadImage() {
       var selectedImage = document.getElementById("imageSelect").value;
-      var name = document.getElementById("nameInput").value;
+      var name = "   " + document.getElementById("nameInput").value; // إضافة ثلاث مسافات قبل الاسم
       var previewDiv = document.getElementById("preview");
 
       var img = new Image();
@@ -135,13 +140,18 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 672; // المسافة من الأعلى بالبكسل
+        // حساب عرض النص
+        var textWidth = ctx.measureText(name).width;
+
+        // تحديد موضع النص على الصورة (الأفقي)
+        var textX = (canvas.width - textWidth) / 2; // الموضع الأفقي (بالوسط)
+
+        // تحديد موضع النص على الصورة (العمودي)
+        var textY = canvas.height / 2; // الموضع العمودي (بالمنتصف)
 
         // إضافة النص إلى الصورة
         ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
-        ctx.fillStyle = "00344d";
+        ctx.fillStyle = "#00344d";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
