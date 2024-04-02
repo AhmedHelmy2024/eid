@@ -15,6 +15,8 @@
     background-color: #f0f0f0;
     color: #333;
     text-align: center;
+    margin: 0;
+    padding: 0;
   }
   h2 {
     color: #00b1e1;
@@ -24,26 +26,28 @@
     text-align: center;
   }
   #preview img {
-    max-width: 80%; /* تم تغيير هذه القيمة لتصغير الصورة */
+    max-width: 80%;
     height: auto;
   }
   #preview span {
     position: absolute;
-    font-size: 36px;
+    font-size: 24px;
     color: #00b1e1;
     background-color: rgba(255, 255, 255, 0.7);
     padding: 10px 20px;
     border-radius: 10px;
-    top: 672px;
+    top: 90%;
     left: 50%;
     transform: translateX(-50%);
   }
   .button-container {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
     gap: 10px;
     margin-bottom: 20px;
+    padding: 20px;
   }
   button {
     background-color: #00b1e1;
@@ -52,8 +56,8 @@
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 5px;
-    flex: 1;
     max-width: 200px;
+    width: 100%;
   }
   button:hover {
     background-color: #0089b7;
@@ -62,8 +66,8 @@
     padding: 10px;
     border-radius: 5px;
     border: 1px solid #ddd;
-    flex: 1;
     max-width: 200px;
+    width: 100%;
   }
 </style>
 </head>
@@ -73,13 +77,11 @@
     <select id="imageSelect">
       <option value="template/EID1.png">1 لون </option>
       <option value="template/EID2.png">لون 2 </option>
-      <!-- يمكنك إضافة خيارات أخرى هنا -->
     </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
     <button onclick="previewImage()">تأكيد الاسم</button>
     <button onclick="downloadImage()">حمل بطاقتك</button>
   </div>
-  <br><br>
   <div id="preview"></div>
   
   <script>
@@ -93,24 +95,19 @@
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
         
-        // تعيين عرض وارتفاع الـ Canvas
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
 
-        // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 672; // المسافة من الأعلى بالبكسل
+        var textX = canvas.width / 2;
+        var textY = canvas.height * 0.9;
 
-        // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
+        ctx.font = "24px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
-        // إضافة الصورة إلى المعاينة
         previewDiv.innerHTML = '';
         previewDiv.appendChild(canvas);
       };
@@ -127,27 +124,21 @@
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
         
-        // تعيين عرض وارتفاع الـ Canvas
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
 
-        // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2; // الموضع الأفقي (بالوسط)
-        var textY = 672; // المسافة من الأعلى بالبكسل
+        var textX = canvas.width / 2;
+        var textY = canvas.height * 0.9;
 
-        // إضافة النص إلى الصورة
-        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
+        ctx.font = "24px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
         ctx.fillStyle = "#00b1e1";
         ctx.textAlign = "center";
         ctx.fillText(name, textX, textY);
 
-        // تحويل الصورة والنص إلى بيانات URL
         var dataURL = canvas.toDataURL("image/png");
 
-        // إنشاء رابط التنزيل
         var downloadLink = document.createElement("a");
         downloadLink.download = "edited_image.png";
         downloadLink.href = dataURL;
