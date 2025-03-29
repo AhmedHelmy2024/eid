@@ -1,10 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="ar">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>بطاقة معايدة - PV</title>
+<title>بطاقة معايدة - الإيثار</title>
 <style>
   @font-face {
     font-family: 'ArbFONTS-GE_SS_TWO_MEDIUM';
@@ -69,12 +68,12 @@
 </style>
 </head>
 <body>
-  <h2>بطاقة معايدة - PV</h2>
+  <h2>بطاقة معايدة - الإيثار</h2>
   <div class="button-container">
     <select id="imageSelect">
-      <option value="template/EID1.png">1 بطاقة </option>
-      <option value="template/EID2.png">بطاقة 2 </option>
-      <!-- يمكنك إضافة خيارات أخرى هنا -->
+      <option value="template/EID1.png">  بطاقة معايدة </option>
+       
+
     </select>
     <input type="text" id="nameInput" placeholder="اكتب اسمك">
     <button onclick="previewImage()">تأكيد الاسم</button>
@@ -93,7 +92,7 @@
       img.onload = function() {
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
-        
+
         // تعيين عرض وارتفاع الـ Canvas
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
@@ -101,14 +100,16 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2 + 150; // الموضع الأفقي (بالوسط)
-        var textY = 710; // المسافة من الأعلى بالبكسل
+        // تحديد موضع النص على الصورة (أفقيًا في المنتصف)
+        var textX = canvas.width / 2; // الموضع الأفقي في المنتصف
+        var textY = 1418; // المسافة من الأعلى بالبكسل
+
+        // تحديد المحاذاة دائمًا إلى المنتصف
+        ctx.textAlign = "center"; // النص في المنتصف
 
         // إضافة النص إلى الصورة
-        ctx.font = "32px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.textAlign = "center";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
+        ctx.fillStyle = "#000000";
         ctx.fillText(name, textX, textY);
 
         // إضافة الصورة إلى المعاينة
@@ -127,7 +128,7 @@
       img.onload = function() {
         var canvas = document.createElement("canvas");
         var ctx = canvas.getContext("2d");
-        
+
         // تعيين عرض وارتفاع الـ Canvas
         canvas.width = img.naturalWidth;
         canvas.height = img.naturalHeight;
@@ -135,14 +136,16 @@
         // رسم الصورة على الـ Canvas
         ctx.drawImage(img, 0, 0);
 
-        // تحديد موضع النص على الصورة
-        var textX = canvas.width / 2 + 150; // الموضع الأفقي (بالوسط)
-        var textY = 710; // المسافة من الأعلى بالبكسل
+        // تحديد موضع النص على الصورة (أفقيًا في المنتصف)
+        var textX = canvas.width / 2; // الموضع الأفقي في المنتصف
+        var textY = 1418; // المسافة من الأعلى بالبكسل
+
+        // تحديد المحاذاة دائمًا إلى المنتصف
+        ctx.textAlign = "center"; // النص في المنتصف
 
         // إضافة النص إلى الصورة
-        ctx.font = "32px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
-        ctx.fillStyle = "#FFFFFF";
-        ctx.textAlign = "center";
+        ctx.font = "40px 'ArbFONTS-GE_SS_TWO_MEDIUM'";
+        ctx.fillStyle = "#000000";
         ctx.fillText(name, textX, textY);
 
         // تحويل الصورة والنص إلى بيانات URL
@@ -157,5 +160,8 @@
       img.src = selectedImage;
     }
   </script>
+  <footer>
+    <p style="font-size: 1.0em;">Programmed by Ahmed Sallam</p>
+  </footer>
 </body>
 </html>
